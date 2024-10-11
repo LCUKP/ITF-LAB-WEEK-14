@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>PhoneBook</title>
+    <style>
+        * {
+            font-family: 'Kanit', Courier, monospace;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .profile {
+            background-image: url("https://mpics.mgronline.com/pics/Images/567000008547804.JPEG");
+            width: 300px;
+            height: 300px;
+            position: relative;
+            background-position: center;
+            background-size: cover;
+            border-radius: 100%;
+            margin: 10px;
+        }
+        .notify {
+            width: 40px;
+            height: 40px;
+            background-color: tomato;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 15px;
+            right: 30px;
+        }
+        .tablr {
+            display: flex;
+            justify-content: center;
+        }
+        table {
+            width: 100%;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        input {
+            background-color: rgb(238, 232, 232);
+            border-radius: 10px;
+            border-style: none;
+        }
+        button {
+            border-radius: 10px;
+            border-style: none;
+            background-color: rgb(188, 184, 184);
+        }
+        button:hover {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        .box {
+            margin: 5px;
+            padding: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="name">
+            <h1 id="user">Username</h1>
+        </div>
+        <div class="profile" id="profile">
+            <div class="notify">
+                <p>1</p>
+            </div>
+        </div>
+        <div class="box">
+            <label for="username">Set Username : </label><input id="setName" placeholder="username" type="text"> <button onclick="setName()">set</button>
+        </div>
+        <div class="box">
+            <label for="profile">Set Image : </label><input id="setImg" placeholder="Imgage Link" type="text"> <button onclick="setImg()">set</button>
+        </div>
+        <h1 id="user">Phone number List</h1>
+        <div id="box-1">
+            <label for="profile">Name : </label><input id="name" placeholder="Name" type="text">
+            <label for="profile">Phone : </label><input id="phone" placeholder="Phone" type="text">
+            <button onclick="addpara()">ADD</button>
+            <button onclick="saveCSV()">EXPORT</button>
+        </div>
+        <div class="tablr">
+            <table>
+                <thead>
+                        <td>
+                            No.
+                        </td>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            Phone Number
+                        </td>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        const phonenumber = []
+        const user = document.getElementById("user")
+        const profile = document.getElementById("profile")
+        const setImge = document.getElementById("setImg")
+        const setname = document.getElementById("setName")
+        user.textContent = "Hello"
+        console.log(setImge)
+
+        function setName() {
+            user.textContent = setname.value
+            setname.value = ""
+        }
+
+        function setImg() {
+            profile.style.backgroundImage = "url("+ setImge.value +")"
+            setImge.value = ""
+        }
+
+        function addpara() {
+            const phone = document.getElementById("phone").value
+            const name = document.getElementById("name").value
+            const box = document.getElementById("tbody")
+            const tr = document.createElement("TR")
+            box.appendChild(tr)
+            const td1 = document.createElement("TD")
+            const td2 = document.createElement("TD")
+            const td3 = document.createElement("TD")
+            td1.textContent = "Test"
+            td2.textContent = name
+            td3.textContent = phone
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            tr.appendChild(td3)
+        }
+        
+        function saveCSV() {
+            const csvContent = phonenumber.map(row => row.join(",")).join("\n"); // Convert array to CSV string
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "data.csv");
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+    </script>
+</body>
+</html>
