@@ -141,39 +141,52 @@
         const profile = document.getElementById("profile")
         const setImge = document.getElementById("setImg")
         const setname = document.getElementById("setName")
-        user.textContent = "Hello"
+        user.textContent = "Puwanas.Ch 67010139"
         console.log(setImge)
 
         function setName() {
-            user.textContent = setname.value
-            setname.value = ""
+            if (setname.value != "") {
+                user.textContent = setname.value
+                setname.value = ""
+            } else {
+                alert("กรุณาใส่ข้อมูลให้ครบถ้วน!!!")
+            }
         }
 
         function setImg() {
-            profile.style.backgroundImage = "url("+ setImge.value +")"
-            setImge.value = ""
+            if (setImge.value != "") {
+                profile.style.backgroundImage = "url("+ setImge.value +")"
+                setImge.value = ""
+            } else {
+                alert("กรุณาใส่ข้อมูลให้ครบถ้วน!!!")
+            }
+            
         }
 
         function addpara() {
             let phone = document.getElementById("phone").value
             let name = document.getElementById("name").value
-            const box = document.getElementById("tbody")
-            const tr = document.createElement("TR")
-            box.appendChild(tr)
-            const td1 = document.createElement("TD")
-            const td2 = document.createElement("TD")
-            const td3 = document.createElement("TD")
-            td1.textContent = num
-            td2.textContent = name
-            td3.textContent = phone
-            tmp = [num, name, phone]
-            phonenumber.push(tmp);
-            tr.appendChild(td1)
-            tr.appendChild(td2)
-            tr.appendChild(td3)
-            num += 1
-            document.getElementById("phone").value = ""
-            document.getElementById("name").value = ""
+            if (phone == "" || name == "") {
+                alert("กรุณาใส่ข้อมูลให้ครบถ้วน!!!")
+            } else {
+                const box = document.getElementById("tbody")
+                const tr = document.createElement("TR")
+                box.appendChild(tr)
+                const td1 = document.createElement("TD")
+                const td2 = document.createElement("TD")
+                const td3 = document.createElement("TD")
+                td1.textContent = num
+                td2.textContent = name
+                td3.textContent = phone
+                tmp = [num, name, phone]
+                phonenumber.push(tmp);
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+                tr.appendChild(td3)
+                num += 1
+                document.getElementById("phone").value = ""
+                document.getElementById("name").value = ""
+            }
         }
         
         function saveCSV() {

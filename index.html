@@ -14,7 +14,7 @@
 
         .container {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%;
@@ -28,9 +28,6 @@
 
         a:hover {
             color: brown;
-        }
-        
-        .box {
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
             width: 90px;
             height: 30px;
@@ -39,12 +36,25 @@
             justify-content: center;
             align-items: center;
         }
+
+        .box {
+            width: 90px;
+            height: 30px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="box">
             <a href="phonebook.html" class="btn">Lab 14</a>
+        </div>
+        <div class="box">
+            <a href="https://itf-it67070139-13.vercel.app" class="btn">Lab 13</a>
         </div>
     </div>
 </body>
